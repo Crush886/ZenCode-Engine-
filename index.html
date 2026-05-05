@@ -1,0 +1,27 @@
+// KMP 算法实现 - 展现你对字符串存储和匹配优化的理解
+void getNext(int* next, const std::string& p) {
+    int j = 0, k = -1;
+    next[0] = -1;
+    while (j < p.length() - 1) {
+        if (k == -1 || p[j] == p[k]) {
+            j++; k++;
+            next[j] = k;
+        } else {
+            k = next[k];
+        }
+    }
+}
+
+int KMP(const std::string& t, const std::string& p) {
+    int next[100]; // 简单演示，ACM 建议用 vector
+    getNext(next, p);
+    int i = 0, j = 0;
+    while (i < (int)t.length() && j < (int)p.length()) {
+        if (j == -1 || t[i] == p[j]) {
+            i++; j++;
+        } else {
+            j = next[j];
+        }
+    }
+    return (j == (int)p.length()) ? (i - j) : -1;
+}
