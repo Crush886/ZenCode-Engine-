@@ -1,0 +1,9 @@
+# Ignore executable files
+*.exe
+*.o
+*.out
+*.obj
+
+# Ignore IDE settings
+.vscode/
+.idea/
